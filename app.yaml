@@ -1,0 +1,15 @@
+runtime: php55
+api_version: 1
+
+# [START handlers]
+handlers:
+- url: /bootstrap
+  static_dir: bootstrap
+  
+- url: /(.+\.php)$
+  script: \1
+  
+- url: /.*
+  script: index.php
+# [END handlers]
+
