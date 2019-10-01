@@ -20,10 +20,12 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" /> 
 <link type="text/css" rel="stylesheet" href="/css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <!-- [END css] -->
 
 
@@ -65,7 +67,10 @@
     .Padding{
 	  padding:10px!important;
     }
-    
+    th{
+	 background-color: #EFEFEF!important;
+	} 
+       
 </style>
     </head>
 <body>
@@ -218,13 +223,14 @@
           ));
         }
 
-		$str = "<table>".
-		"<tr>" .
+		$str = "<table class='table table-striped table-bordered' id='tblResult'>".
+        "<thead>" .
+        "<tr>" .
 		"<th>User Name</th>" .
 		"<th>Course Name</th>" .
 		"<th>Category</th>" .
 		"<th>Completed Date</th>" .
-        "</tr>";
+        "</tr></thead>";
         
     foreach ($iterator as $itr) {
         $CompletionDate = date("d-m-y H:i", $itr["CompletedDate"]['S']);
@@ -253,7 +259,12 @@
                 }
             });
 
-     });
+     
+   $('#tblResult').DataTable({
+        responsive: true
+    });
+
+});
 </script>
 </body>
 </html>

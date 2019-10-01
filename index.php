@@ -55,6 +55,13 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
     width:100%!important;
     height:70%!important;
    }
+   .HistoryPanel{
+        margin-top:-13px!important;
+    }
+
+    H2{
+     color:#3C3C3C!important;   
+    }
       </style>
     </head>
 <body >
@@ -215,7 +222,7 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
     <p>Paris, France's capital, is a major European city and a global center for art, fashion, gastronomy and culture. Its picturesque 19th-century cityscape is crisscrossed by wide boulevards and the River Seine. </p>
 </div>
 
-<div id="pnlInductionHistory" class="tab-history hidden" >
+<div id="pnlInductionHistory" class="tab-history HistoryPanel hidden" >
     <h2>Induction History</h2>
         <iframe id="InductionHistory" src="history.php" class="frame"></iframe>
 </div>
