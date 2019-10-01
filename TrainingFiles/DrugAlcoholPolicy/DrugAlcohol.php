@@ -31,7 +31,18 @@
 .ul, li {
     padding:5px;
 }
-
+.content {
+	margin: 1% auto;
+	padding: 3px;
+	width: 100%;
+	/*background-color: #ff7cff;*/
+	color: #ffffff;
+	font-family: 'Helvetica', sans-serif;
+	border: 1px solid #000000;
+	border-radius: 10px;
+	box-shadow: 5px 5px 10px #212121;
+	/*display: flex;*/
+}
 </style> 
 </head>
 <body class="content">
