@@ -1,5 +1,5 @@
 <?php
-/* This is the main page for the Employee Induction Portal. 
+/* This is the main page for the Employee Induction Portal.
    User will be redirected to this page once login is successful.
 */
 
@@ -60,7 +60,7 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
     }
 
     H2{
-     color:#3C3C3C!important;   
+     color:#3C3C3C!important;
     }
       </style>
     </head>
@@ -100,45 +100,45 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
    </li>
    <li><a id="lnkHistory" href="#pnlInductionHistory"><i class="fa fa-list-alt"></i> Induction History</a></li>
    <li><a href="#"><i class="fa fa-info-circle"></i> Training Statistic</a></li>
-   <li><a href="#"><i class="fa fa-inbox"></i> Contact</a></li>
+   <li><a href="/contact.php"><i class="fa fa-inbox"></i> Contact</a></li>
    </ul>
 </div>
 
 <div id="section-hr" class="tab-content">
     <h2>Human Resource Induction Modules</h2>
-  
+
                   <div class="row">
                     <div class="tilediv">
                         <div id="tileIncidents" class="tile blue" title=" Drug Alcohol Policy"  onclick="showDialog('DrugAlcohol')">
-                        <i class="fa fa-beer fa-4x"></i> 
+                        <i class="fa fa-beer fa-4x"></i>
                         <div class="tile-content">
                             <span class="tile-label">Drug Alcohol Policy</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalIncidents" runat="server"></asp:Label></span>
                         </div>
                     </div>
                     <div id="tileRequests" class="tile gold" title=" Equal Employment Policy"  onclick="showDialog('EqualEmployment')">
-                        <i class="fa fa-users fa-4x"></i> 
+                        <i class="fa fa-users fa-4x"></i>
                         <div class="tile-content">
                             <span class="tile-label">Equal Employment Policy</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalServiceRequests" runat="server"></asp:Label></span>
                         </div>
                     </div>
                     <div id="divAged" runat="server" class="tile red"  title=" Social Media Policy"  onclick="showDialog('SocialMedia')">
-                        <i class="fa fa-facebook-square fa-4x"></i> 
+                        <i class="fa fa-facebook-square fa-4x"></i>
                         <div class="tile-content">
                             <span class="tile-label">Social Media Policy</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalAged" runat="server"></asp:Label></span>
                         </div>
                     </div>
                     <div id="tileOpen" class="tile green" title="Mobile Phone Policy"  onclick="showDialog('MobilePhone')">
-                        <i class="fa fa-mobile fa-4x" ></i> 
+                        <i class="fa fa-mobile fa-4x" ></i>
                         <div class="tile-content">
                             <span class="tile-label">Mobile Phone Policy</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalOpen" runat="server"></asp:Label>
                             </span>
                         </div>
                     </div>
-                   
+
                   </div>
                 </div>
 
@@ -148,35 +148,35 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
     <div class="row">
                     <div class="tilediv">
                         <div id="tileIncidents" class="tile red" title=" Emergency Preparedness"  onclick="showDialog('Incidents')">
-                        <i class="fa fa-ambulance fa-4x"></i> 
+                        <i class="fa fa-ambulance fa-4x"></i>
                         <div class="tile-content">
                             <span class="tile-label">Emergency Preparedness</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalIncidents" runat="server"></asp:Label></span>
                         </div>
                     </div>
                     <div id="tileRequests" class="tile purple" title=" Hazard Inspections"  onclick="showDialog('Service')">
-                        <i class="fa fa-exclamation-triangle fa-4x"></i> 
+                        <i class="fa fa-exclamation-triangle fa-4x"></i>
                         <div class="tile-content">
                             <span class="tile-label">Hazard Inspections</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalServiceRequests" runat="server"></asp:Label></span>
                         </div>
                     </div>
                     <div id="divAged" runat="server" class="tile orange"  title=" Pedestrian Safety"  onclick="showDialog('Aged')">
-                        <i class="fa fa-road fa-4x"></i> 
+                        <i class="fa fa-road fa-4x"></i>
                         <div class="tile-content">
                             <span class="tile-label">Pedestrian Safety</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalAged" runat="server"></asp:Label></span>
                         </div>
                     </div>
                     <div id="tileOpen" class="tile green" title="Take 3"  onclick="showDialog('Open')">
-                        <i class="fa fa-cube fa-4x" ></i> 
+                        <i class="fa fa-cube fa-4x" ></i>
                         <div class="tile-content">
                             <span class="tile-label">Take 3</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalOpen" runat="server"></asp:Label>
                             </span>
                         </div>
                     </div>
-                   
+
                   </div>
                 </div>
 </div>
@@ -185,35 +185,35 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
     <div class="row">
                     <div class="tilediv">
                         <div id="tileIncidents" class="tile green" title=" Falls Prevention"  onclick="showDialog('Incidents')">
-                        <i class="fa fa-medkit fa-4x"></i> 
+                        <i class="fa fa-medkit fa-4x"></i>
                         <div class="tile-content">
                             <span class="tile-label">Falls Prevention</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalIncidents" runat="server"></asp:Label></span>
                         </div>
                     </div>
                     <div id="tileRequests" class="tile navy" title=" Loading and Unloading Exclusion Zones"  onclick="showDialog('Service')">
-                        <i class="fa fa-truck fa-4x"></i> 
+                        <i class="fa fa-truck fa-4x"></i>
                         <div class="tile-content">
                             <span class="tile-label">Loading/Unloading Exclusion Zones</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalServiceRequests" runat="server"></asp:Label></span>
                         </div>
                     </div>
                     <div id="divAged" runat="server" class="tile yellow"  title=" Safe Vehicle Parking"  onclick="showDialog('Aged')">
-                        <i class="fa fa-newspaper-o fa-4x"></i> 
+                        <i class="fa fa-newspaper-o fa-4x"></i>
                         <div class="tile-content">
                             <span class="tile-label">Safe Vehicle Parking</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalAged" runat="server"></asp:Label></span>
                         </div>
                     </div>
                     <div id="tileOpen" class="tile purple" title="Top of Trailer"  onclick="showDialog('Open')">
-                        <i class="fa fa-archive fa-4x" ></i> 
+                        <i class="fa fa-archive fa-4x" ></i>
                         <div class="tile-content">
                             <span class="tile-label">Top of Trailer</span><br/>
                             <span class="tile-value"><asp:Label ID="lblTotalOpen" runat="server"></asp:Label>
                             </span>
                         </div>
                     </div>
-                   
+
                   </div>
                 </div>
 </div>
@@ -230,8 +230,8 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
 <div id="pnlInductionDetails" class="ui-dialog-full" >
            <iframe id="InductionPage" src="about:blank" class="hidden"></iframe>
         </div>
-        
-        
+
+
     <script type="text/javascript">
       //Loads content and open dialog
       function showDialog(RequestType) {
@@ -259,7 +259,7 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
            if (request == '') {
                 request = RequestType;
             }
-                               
+
             $("#pnlInductionDetails").dialog({  //create dialog, but keep it closed
                 autoOpen: false,
                 width: 1000,
@@ -269,7 +269,7 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
                 height: 580,
                 modal: true,
                 open: function () {
-                                
+
                     $('#InductionPage').attr('src',url);
                     $("#InductionPage").removeClass("hidden");
                 },
