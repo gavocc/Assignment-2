@@ -5,11 +5,17 @@ api_version: 1
 handlers:
 - url: /bootstrap
   static_dir: bootstrap
+
+- url: /css
+  static_dir: css
+  
+- url: /images
+  static_dir: images
   
 - url: /(.+\.php)$
   script: \1
   
-- url: /.*
-  script: index.php
+- url: /
+  script: login.php
 # [END handlers]
 

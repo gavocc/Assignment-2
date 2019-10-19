@@ -8,7 +8,10 @@
 //#Region Import API
 ob_start();
 session_start();
-require_once 'php/google-api-php-client/vendor/autoload.php';
+require 'aws/aws-autoloader.php';
+use Aws\DynamoDb\DynamoDbClient;
+
+date_default_timezone_set('Australia/Melbourne');
 //#End Region
 ?>
 
@@ -58,7 +61,8 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
         background:beige;
         padding:10px;
         height:100px;
-        color:white;
+        color:#ab1815;
+        font-weight:bold;
         margin-bottom:10px;
         background-image: url('images/images.jpg');
     }
@@ -71,6 +75,16 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
 $_SESSION['UserName']='';
 $strUserID='';
 $ErrorMessage='';
+
+$client = new DynamoDbClient([
+    'region'  => 'us-east-1',
+    'version' => 'latest',
+    'credentials' => [
+        'key'    => 'AKIAIOU7ZFE3Q235L6AQ',
+        'secret' => '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'
+     ]
+    ]);   
+
 if(isset($_POST['UserID']) && isset($_POST['Password']) ) {
   if (empty($_POST["UserID"])||empty($_POST["Password"])) {
     $ErrorMessage = "User name or password is invalid";
@@ -81,32 +95,23 @@ else {
    
     if ($strUserID !='' && $strPassword !='') {
 
-        $client = new Google_Client();
-        $client->useApplicationDefaultCredentials();
-        $client->addScope(Google_Service_Bigquery::BIGQUERY);
-        $bigquery = new Google_Service_Bigquery($client);
-        $projectId = 's3809839-cc2019';
-        $datasetId = 'InductionTraining';
-        $tableId   = 'User';
-        $ReadRequest = new Google_Service_Bigquery_QueryRequest();
-        
         $strLoginName = '';
-        $ReadRequest->setQuery("SELECT UserName FROM InductionTraining.User WHERE UserName='". $strUserID ."' AND Password='". $strPassword ."';");
-        $ReadResponse = $bigquery->jobs->query($projectId, $ReadRequest);
+      
+           try {
+             $iterator = $client->getIterator('Scan', array(
+                'TableName' => 'User',
+                'FilterExpression' => 'UserName = :filter1 and Password = :filter2',
+                 "ExpressionAttributeValues" => array(":filter1"=>array("S"=>$strUserID),
+                                              ":filter2"=>array("S"=>$strPassword))
+              ));
+
+              foreach ($iterator as $itr) {
+                $strLoginName = $itr["UserName"]['S'];
+                }
+            } catch (Exception $ex) {
+               echo $ex->getMessage();
+           }
         
-           $ReadRows = $ReadResponse->getRows();
-           $TotalCount = 0;
-            foreach ($ReadRows as $ReadRow)
-        		{
-                    
-        			foreach ($ReadRow['f'] as $field)
-        			{
-                        echo $field['v'];
-        				$strLoginName = $field['v'];
-        			}
-                    
-        		}
-                  
                 if ($strLoginName !='') {
                     header('Location:index.php?UserName='.$strLoginName);
                     exit();

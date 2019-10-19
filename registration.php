@@ -7,7 +7,12 @@
 //#Region Import API
 ob_start();
 session_start();
-require_once 'php/google-api-php-client/vendor/autoload.php';
+require 'aws/aws-autoloader.php';
+require_once 'fpdf181/fpdf.php';
+ date_default_timezone_set('Australia/Melbourne');
+
+use Aws\DynamoDb\DynamoDbClient;
+
 //#End Region
 ?>
 
@@ -53,7 +58,7 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
         Text-align:center!important;
     }
     .Message{
-        color:LightBlue!important;
+        color:DarkRed!important;
     }
 </style>
     </head>
@@ -61,38 +66,38 @@ require_once 'php/google-api-php-client/vendor/autoload.php';
 <?php
 
 //#Region Private Methods
+
+$client = new DynamoDbClient([
+    'region'  => 'us-east-1',
+    'version' => 'latest',
+    'credentials' => [
+        'key'    => 'AKIAIOU7ZFE3Q235L6AQ',
+        'secret' => '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'
+     ]
+    ]);   
+
 $Message = "";
 if(isset($_POST['UserID']) && isset($_POST['Password']) ) {
-
-	$client = new Google_Client();
-    $client->useApplicationDefaultCredentials();
-    $client->addScope(Google_Service_Bigquery::BIGQUERY);
-    $bigquery = new Google_Service_Bigquery($client);
-    $projectId = 's3809839-cc2019';
-    
-    $datasetId = 'InductionTraining';
-    $tableId   = 'User';
-    $date = date('Y-m-d H:i:s');
-   
-    $data = array('UserName' => $_POST['UserID'],
-        'Password' => $_POST['Password'],
-       'FirstName' => $_POST['FirstName'],
-        'LastName' => $_POST['LastName'],
-       'Email' => $_POST['Email'],
-       'CreatedDateTime' =>  str_replace(' ', 'T', $date));
-
+	
     try {
-        $rows = array();
-        $row = new Google_Service_Bigquery_TableDataInsertAllRequestRows();
-        $row->setJson($data);
-        $row->setInsertId(date('YmdHis')); 
-       $rows[0] = $row;
-     
-        $request = new Google_Service_Bigquery_TableDataInsertAllRequest();
-        $request->setKind('bigquery#tableDataInsertAllRequest');
-        $request->setRows($rows);
-        $response =  $bigquery->tabledata->insertAll($projectId, $datasetId , $tableId, $request);
-        $Message = "Registration successful";
+  
+    $date = date('d-m-Y H:i:s');
+
+//Insert into Dynamodb TrainingRegistration table.
+    $response = $client->putItem(array(
+    'TableName' => 'User', 
+    'Item' => array(
+        'UserName'   => array('S' => $_POST['UserID']),
+        'Password'  => array('S' => $_POST['Password']),
+        'FirstName'  => array('S' => $_POST['FirstName']),
+        'LastName'  => array('S' => $_POST['LastName']),
+        'Email'  => array('S' => $_POST['Email']),
+        'SecurityRole'  => array('S' => 'Employee'),
+         'CreatedDateTime'  => array('S' => strval($date)),
+    )
+    ));
+     //   $Message = "Registration successful";
+        $Message = 'Registration successful. <a href="/login.php">Click here to login</a>';
     
     } catch (Exception $ex) {
         echo $ex->getMessage();
@@ -106,7 +111,7 @@ if(isset($_POST['UserID']) && isset($_POST['Password']) ) {
         <h2 class="text-center">Registration</h2>
         <div class="form-group">
         	<div class="input-group">
-                <input type="text" name="UserID" class="form-control" placeholder="Username" required="required">
+                <input type="text" name="UserID" class="form-control" placeholder="Username" autocomplete="off" required="required">
             </div>
         </div>
 		<div class="form-group">
@@ -116,17 +121,17 @@ if(isset($_POST['UserID']) && isset($_POST['Password']) ) {
         </div>
         <div class="form-group">
         	<div class="input-group">
-                <input type="text" name="FirstName" class="form-control" placeholder="First Name" required="required">
+                <input type="text" name="FirstName" class="form-control" placeholder="First Name" autocomplete="off" required="required">
             </div>
         </div>
         <div class="form-group">
         	<div class="input-group">
-                <input type="text" name="LastName" class="form-control" placeholder="Last Name" required="required">
+                <input type="text" name="LastName" class="form-control" placeholder="Last Name" autocomplete="off" required="required">
             </div>
         </div>
         <div class="form-group">
         	<div class="input-group">
-                <input type="text" name="Email" class="form-control" placeholder="Email">
+                <input type="text" name="Email" class="form-control" placeholder="Email" autocomplete="off">
             </div>
         </div> 
         <div class="form-group TextCenter">
