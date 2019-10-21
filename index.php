@@ -125,8 +125,8 @@ $("#lnkContact").click(function(event) {
     'region'  => 'us-east-1',
     'version' => 'latest',
     'credentials' => [
-        'key'    => 'AKIAIOU7ZFE3Q235L6AQ',
-        'secret' => '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'
+        'key'    => 'AKIAJYK3WFEVFQX4DT4Q',
+        'secret' => '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'
      ]
     ]);   
 

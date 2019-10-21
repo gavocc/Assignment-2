@@ -104,8 +104,8 @@
         'region'  => 'us-east-1',
         'version' => 'latest',
         'credentials' => [
-            'key'    => 'AKIAIOU7ZFE3Q235L6AQ',
-            'secret' => 'dZFm8X/bYtSIHKDJnUlMK7O2TcvSxPjkz/XruITH'
+        'key'    => '<Enter your AWS Access Key here>',
+        'secret' => '<Enter your AWS Secret Key here>'
          ]
         ]);   
        
